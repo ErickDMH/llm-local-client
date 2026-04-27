@@ -49,9 +49,10 @@ jobs:
         run: python -m build
         working-directory: packages/python
       - name: Publish package
-        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
           # REQUIRES SECRET: Create a PyPI API token and save it in your GitHub repository secrets as 'PYPI_API_TOKEN'
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages-dir: packages/python/dist/
+          packages_dir: packages/python/dist/
