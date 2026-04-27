@@ -1,7 +1,7 @@
 name: Auto Publish on Merge
 
 on:
-  pull_request:
+  pull_request_target:
     types: [closed]
     branches: [main]
 
@@ -45,9 +45,9 @@ jobs:
             echo "No explicit version found in PR. Bumping patch version."
             cd packages/typescript
             CURRENT_VERSION=$(node -p "require('./package.json').version")
-            NEW_VERSION=$(npm version patch --no-git-tag-version)
-            # npm version outputs 'v1.0.1', so strip the 'v'
-            NEW_VERSION=${NEW_VERSION#v}
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+            NEW_VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
+            echo "Computed next patch version: $NEW_VERSION"
             echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
           fi
 
