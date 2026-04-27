@@ -36,6 +36,7 @@ venv/
 # OS
 .DS_Store
 *.swp
+.secrets
 
 # Docker (Ignore data volumes)
 ollama_data/
