@@ -1,0 +1,71 @@
+mcpServers:
+  llm_local_client:
+    version: 1.0.0
+    description: "Agentic interface to the llm-local-client module. Enables local LLM execution, context tree management, and resource attachments."
+    tools:
+      - name: prompt
+        description: "Send a prompt to the local LLM model and get a response."
+        inputSchema:
+          type: object
+          properties:
+            prompt:
+              type: string
+              description: "The prompt to send."
+            context_id:
+              type: string
+              description: "The ID of the conversation node to append this prompt to. If omitted, starts a new context."
+            model:
+              type: string
+              description: "The model to use (e.g., 'llama3')."
+          required:
+            - prompt
+
+      - name: get_context
+        description: "Retrieve a specific context node or the full conversation tree."
+        inputSchema:
+          type: object
+          properties:
+            context_id:
+              type: string
+              description: "The ID of the context node to retrieve."
+          required:
+            - context_id
+
+      - name: branch_context
+        description: "Create a new branch from an existing conversation node."
+        inputSchema:
+          type: object
+          properties:
+            parent_id:
+              type: string
+              description: "The node ID to branch from."
+          required:
+            - parent_id
+
+      - name: upload_resource
+        description: "Attach a resource (text, image, pdf) to a context node."
+        inputSchema:
+          type: object
+          properties:
+            context_id:
+              type: string
+            file_path:
+              type: string
+            type:
+              type: string
+          required:
+            - context_id
+            - file_path
+
+      - name: compare_threads
+        description: "Compare two reasoning branches."
+        inputSchema:
+          type: object
+          properties:
+            thread_a_id:
+              type: string
+            thread_b_id:
+              type: string
+          required:
+            - thread_a_id
+            - thread_b_id

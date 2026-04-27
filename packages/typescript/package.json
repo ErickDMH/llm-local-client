@@ -1,0 +1,41 @@
+{
+  "name": "llm-local-client",
+  "version": "1.0.0",
+  "description": "Agentic interface to local LLMs with tree-based context management.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "mcp.yaml",
+    "openapi.yaml"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [
+    "llm",
+    "agent",
+    "mcp",
+    "ollama",
+    "local",
+    "context-tree"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.7",
+    "@types/uuid": "^9.0.8",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
