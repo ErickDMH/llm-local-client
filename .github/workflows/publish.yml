@@ -3,6 +3,7 @@ name: Publish Packages
 on:
   release:
     types: [created]
+  workflow_dispatch: # Allows you to manually click "Run workflow" in the GitHub Actions tab
 
 jobs:
   publish-npm:
@@ -24,6 +25,7 @@ jobs:
       - run: npm publish
         working-directory: packages/typescript
         env:
+          # REQUIRES SECRET: Create an NPM automation token and save it in your GitHub repository secrets as 'NPM_TOKEN'
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-pypi:
@@ -50,5 +52,6 @@ jobs:
         uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
         with:
           user: __token__
+          # REQUIRES SECRET: Create a PyPI API token and save it in your GitHub repository secrets as 'PYPI_API_TOKEN'
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages-dir: packages/python/dist/
